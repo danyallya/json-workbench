@@ -8,9 +8,9 @@ The starter provides a local JSON editor, formatting and parse feedback, a struc
 The editor currently holds one sample document in memory. It does not upload payloads. The roadmap adds schema validation, compare mode, large-file support, saved local workspaces, CSV/JSON conversions, export, accessibility review and the PWA shell.
 
 ## Run locally
-Use Node.js 20 or newer. The local Nexus .npmrc is ignored by Git.
+Use Node.js 20 or newer. The project-local `.npmrc` is ignored by Git because registry configuration is machine-specific. Use `npm ci`; npmjs is an approved fallback if a configured mirror is missing a dependency.
 
-    npm install
+    npm ci
     npm run dev
 
 Before release, run npm test, npm run typecheck and npm run build. The workspace is designed for keyboard use and small screens; preserve editor labels and clear parse errors as features grow.

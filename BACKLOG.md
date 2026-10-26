@@ -3,9 +3,12 @@
 Review the previous code and diff, check the backlog and debug open defects. Add or update tests for changed parsing/editor behavior, finish the day's ticket, run tests/typecheck/build, update README and backlog, and prepare tomorrow's scope. Record any unavailable checks with their cause; continue static review. Add new risks/tasks with priority.
 
 ## Foundation status
-Day 00 editor shell, JSON parse state, format action, theme toggle and Radix tabs are scaffolded. Dependencies are not installed and build/test checks have not run. Nexus .npmrc is ignored and local.
+Day 00 editor shell, JSON parse state, format action, theme toggle and Radix tabs are ready. Dependencies and lockfile are installed; smoke test (1/1), typecheck and production build passed. This Vite template has no standalone lint script. Nexus .npmrc is ignored and local.
 
 ## Daily tickets
+### Day 00 verification
+Nexus returned 404 for packages used by this project. Following the user's approval, dependencies were installed with npmjs fallback; the ignored local .npmrc keeps Nexus as default and contains only required scope overrides. Day 01 has not started.
+
 | Day | Deliverable |
 |---|---|
 | 01 | Define document model and parser error format; cover valid and invalid JSON. |
