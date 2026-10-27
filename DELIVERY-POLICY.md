@@ -37,3 +37,7 @@ Historical Day 00/01 entries describe their original workflow. This policy super
 Parser error handling, JSON comparison and editor accessibility have different review evidence. Use those real boundaries for commits; a formatting fix and its cases may be one coherent commit.
 
 Next planned scope: Day 02 — syntax highlighting and stable line/column diagnostics.
+
+## Contribution evidence
+
+Follow [CONTRIBUTING.md](CONTRIBUTING.md) within the existing delivery scope. Consider a minimal synthetic JSON parsing/diagnostic case with expected line and column. Keep real issue links and agreed coauthor attribution with the matching change. Profile goals do not change commit counts, review gates, day numbering or authorization for external contact/settings/payment.

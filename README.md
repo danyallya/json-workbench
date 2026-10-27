@@ -24,3 +24,7 @@ Never send payload content to telemetry or a server without an explicit product 
 ## Delivery and review
 
 Vanta review requires deterministic parser locations, preservation of per-document source and local-only payload handling; invalid and primitive JSON roots need explicit evidence. Follow [DELIVERY-POLICY.md](DELIVERY-POLICY.md) from Day 02 for sequential execution, scope-driven commits and this repository's separate branch/PR with GitHub panel review and merge.
+
+## Contributions and examples
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for reproducible reports, genuine collaboration and product examples such as a local-processing walkthrough and malformed-input examples. Contributions follow the product backlog and reviewed PR workflow.
