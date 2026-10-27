@@ -46,3 +46,7 @@ Mark each day Done, In progress or Blocked. Keep tomorrow prepared and record an
 
 - Day 01: Done. File tabs now maintain separate in-memory documents, parser results have a discriminated error contract, and root summaries support all JSON value types; next is Day 02, syntax highlighting and stable line/column diagnostics.
 - Review carry-over for Day 02: the parser preserves browser engine detail and only extracts an optional position; provide deterministic diagnostics with stable line and column values.
+
+## Process change effective Day 02 — 2026-10-27
+
+Apply [DELIVERY-POLICY.md](DELIVERY-POLICY.md) to every remaining ticket: finish Vanta before the next repository, use meaningful scope-driven commits and deliver through its own reviewed PR. A blocked external gate needs a concrete record and next action. This adds delivery gates without moving Day 02–30 product work or changing completed history.
