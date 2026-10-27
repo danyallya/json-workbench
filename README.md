@@ -20,3 +20,7 @@ Never send payload content to telemetry or a server without an explicit product 
 
 ### Document and parser contract
 `src/domain/jsonDocument.ts` defines a session document (`id`, `name`, and source text), recursive JSON value types, and a discriminated parse result. Invalid input returns `code: INVALID_JSON`, a consistent user-facing message, the engine detail, and an optional character position. The editor keeps each sample document's source separate while you switch files; changes remain in memory and reset on reload. Root summaries handle objects, arrays, and primitive JSON values.
+
+## Delivery and review
+
+Vanta review requires deterministic parser locations, preservation of per-document source and local-only payload handling; invalid and primitive JSON roots need explicit evidence. Follow [DELIVERY-POLICY.md](DELIVERY-POLICY.md) from Day 02 for sequential execution, scope-driven commits and this repository's separate branch/PR with GitHub panel review and merge.

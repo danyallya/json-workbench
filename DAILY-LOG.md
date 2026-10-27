@@ -17,3 +17,10 @@
 - Documentation: README defines the document/parser contract and local-only session behavior; BACKLOG marks Day 01 done and records stable line/column parsing for Day 02.
 - Git: implementation commit `4898a27` (`feat: define JSON document and parser contracts`) is pushed to `day-01/document-contracts` and fast-forwarded to `main`. This daily-log entry is included in the final synchronization of both branches. No `.npmrc`, environment files, credentials, or generated build output are tracked.
 - Next: Day 02 — add syntax highlighting and stable line/column diagnostics.
+
+## Review workflow maintenance — 2026-10-27
+
+- The user requested careful sequential project execution, commit content/counts suited to each product and an independent branch/PR per repository with panel review and merge.
+- Vanta review requires deterministic parser locations, preservation of per-document source and local-only payload handling; invalid and primitive JSON roots need explicit evidence. Added a standalone delivery policy and entry points in AGENTS, README and BACKLOG.
+- Documentation-only maintenance on `docs/vanta-parser-review`; Markdown diff reviewed and `git diff --check` used. No application tests/build rerun for this process change. Next product work: Day 02 — syntax highlighting and stable line/column diagnostics.
+- This is the pre-merge log state. The portfolio workspace DELIVERY-RECEIPTS.md records the actual PR URL, checked head, panel gates, merge SHA and sync afterward; reconcile it here in the next authorized update.
