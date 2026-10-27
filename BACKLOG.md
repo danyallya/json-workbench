@@ -11,7 +11,7 @@ Nexus returned 404 for packages used by this project. Following the user's appro
 
 | Day | Deliverable |
 |---|---|
-| 01 | Define document model and parser error format; cover valid and invalid JSON. |
+| 01 | **Done** — define the session document and recursive JSON value model, normalize parser errors, and cover valid/invalid documents. |
 | 02 | Add syntax highlighting and stable line/column diagnostics. |
 | 03 | Add keyboard shortcuts for format, save and accessible help. |
 | 04 | Add local file open/save with size limits and safe error handling. |
@@ -43,3 +43,6 @@ Nexus returned 404 for packages used by this project. Following the user's appro
 | 30 | Release-candidate review, all checks, known limitations and release notes. |
 
 Mark each day Done, In progress or Blocked. Keep tomorrow prepared and record any new findings.
+
+- Day 01: Done. File tabs now maintain separate in-memory documents, parser results have a discriminated error contract, and root summaries support all JSON value types; next is Day 02, syntax highlighting and stable line/column diagnostics.
+- Review carry-over for Day 02: the parser preserves browser engine detail and only extracts an optional position; provide deterministic diagnostics with stable line and column values.
