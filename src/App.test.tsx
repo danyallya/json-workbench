@@ -9,7 +9,9 @@ describe('Vanta JSON Workbench', () => {
     render(<App />);
     const editor = screen.getByRole('textbox', { name: /JSON source editor/i });
     fireEvent.change(editor, { target: { value: '{\n "x": }' } });
-    expect(screen.getByRole('status')).toHaveTextContent('Line 2, column 7');
+    const diagnostic = screen.getByRole('status');
+    expect(diagnostic).toHaveTextContent('line 2, column 7');
+    expect(diagnostic.closest('.preview-panel')).toBeNull();
     fireEvent.change(editor, { target: { value: '{"html":"<img src=x onerror=alert(1)>"}' } });
     const preview = screen.getByLabelText('Highlighted JSON source');
     expect(preview).toHaveTextContent('<img src=x onerror=alert(1)>');
