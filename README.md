@@ -28,3 +28,7 @@ Vanta review requires deterministic parser locations, preservation of per-docume
 ## Contributions and examples
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for reproducible reports, genuine collaboration and product examples such as a local-processing walkthrough and malformed-input examples. Contributions follow the product backlog and reviewed PR workflow.
+
+## Stable diagnostics and highlighting
+
+A local JSON grammar scanner reports the first invalid offset (zero-based) and line/column (one-based UTF-16 code units). LF, CRLF and CR line endings are handled consistently without relying on browser-specific error text. The editor rejects nesting deeper than 256 levels with a location; larger-payload worker support remains future work. The structure pane highlights source keys, strings, numbers and literals using escaped React text, never HTML injection. Input and per-file session state remain unchanged; no payload is uploaded. Synthetic diagnostic example: a two-line object with a missing value reports the closing brace at line 2, column 7. Browser visual/keyboard review remains pending while access is disabled.

@@ -31,3 +31,11 @@
 - Previous delivery-policy PR #1 is merged in origin/main; this maintenance starts from that merged history. No badge, collaborator, star or accepted answer is claimed.
 - Documentation-only scope on docs/vanta-parser-contributions; reviewed Markdown and git diff --check. App tests/build are not rerun because runtime behavior is unchanged.
 - Publication is pre-merge here; the final PR/head/panel/check/merge/sync evidence goes in the workspace DELIVERY-RECEIPTS.md after completion. Next: Day 02 — syntax highlighting and stable line/column diagnostics. Wait for the user's day trigger.
+
+## Day 02 — stable syntax locations — 2026-10-28
+
+- Reconciled policy/contribution receipts (PRs #1/#2; main 9bc54c6). Reviewed prior parser/fixture changes: location depended on engine error wording. Added a deterministic local grammar scan with UTF-16 offset and one-based line/column, CR/LF handling and an explicit 256-level nesting limit.
+- Added source token highlighting in the preview with React text spans, not HTML injection. Error announcements expose location and consistent grammar detail; source/session switching remains intact. Synthetic malformed examples and inert-markup rendering provide useful contribution evidence without real payloads.
+- Final npm test -- --reporter=dot --maxWorkers=1 passed (3 files, 21 tests). npm run build passed including typecheck/PWA; git diff --check passed. No standalone lint script. Locally read all changed source/tests/docs; private config and generated output excluded.
+- Work browser use is disabled: visual editor/theme/layout/keyboard checks, PR creation, exact-head panel Files changed/Checks/conversation review, merge and local main sync remain pending. Branch day-02/parser-locations-highlight is preserved/pushed; workspace receipt records final head. No CI, badge or independent approval claim.
+- Next product work: Day 03 keyboard shortcuts for format/save/help, after resolving Day 02 delivery gates. Existing shortcut footer is presentation only until then.
