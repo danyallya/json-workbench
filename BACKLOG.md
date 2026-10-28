@@ -12,7 +12,7 @@ Nexus returned 404 for packages used by this project. Following the user's appro
 | Day | Deliverable |
 |---|---|
 | 01 | **Done** — define the session document and recursive JSON value model, normalize parser errors, and cover valid/invalid documents. |
-| 02 | Add syntax highlighting and stable line/column diagnostics. |
+| 02 | Implemented — safe highlighted source and deterministic line/column diagnostics with a narrow-screen accessible status; final panel delivery pending. |
 | 03 | Add keyboard shortcuts for format, save and accessible help. |
 | 04 | Add local file open/save with size limits and safe error handling. |
 | 05 | Add schema attachment and JSON Schema validation feedback. |

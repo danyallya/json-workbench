@@ -1,3 +1,4 @@
+import { diagnoseJson } from './jsonSyntax';
 export type JsonPrimitive = string | number | boolean | null;
 export type JsonObject = { [key: string]: JsonValue };
 export type JsonValue = JsonPrimitive | JsonValue[] | JsonObject;
@@ -13,6 +14,8 @@ export type JsonParseError = {
   message: string;
   detail: string;
   position: number | null;
+  line: number;
+  column: number;
 };
 
 export type JsonParseResult =
@@ -25,6 +28,11 @@ export type JsonRootSummary = {
 };
 
 export function parseJsonDocument(source: string): JsonParseResult {
+  const issue = diagnoseJson(source);
+  if (issue) return { ok: false, error: {
+    code: 'INVALID_JSON', message: 'Could not parse this document. Check the JSON syntax.',
+    detail: issue.message, position: issue.position, line: issue.line, column: issue.column,
+  } };
   try {
     return { ok: true, value: JSON.parse(source) as JsonValue };
   } catch (error) {
@@ -38,6 +46,8 @@ export function parseJsonDocument(source: string): JsonParseResult {
         message: 'Could not parse this document. Check the JSON syntax.',
         detail,
         position: positionMatch ? Number(positionMatch[1]) : null,
+        line: 1,
+        column: 1,
       },
     };
   }
