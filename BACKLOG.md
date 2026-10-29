@@ -12,9 +12,9 @@ Nexus returned 404 for packages used by this project. Following the user's appro
 | Day | Deliverable |
 |---|---|
 | 01 | **Done** — define the session document and recursive JSON value model, normalize parser errors, and cover valid/invalid documents. |
-| 02 | Implemented — safe highlighted source and deterministic line/column diagnostics with a narrow-screen accessible status; final panel delivery pending. |
-| 03 | Add keyboard shortcuts for format, save and accessible help. |
-| 04 | Add local file open/save with size limits and safe error handling. |
+| 02 | **Done** — safe highlighted source and deterministic line/column diagnostics merged in PR #4 (`d649206`). |
+| 03 | Implemented — keyboard shortcuts for formatting, local download and accessible help; GitHub panel delivery remains pending. |
+| 04 | Add local file open; add size limits and safe error handling to open and download flows. |
 | 05 | Add schema attachment and JSON Schema validation feedback. |
 | 06 | Add schema fixture library and required-field navigation. |
 | 07 | Review editor keyboard flow, parser tests and error recovery. |
@@ -53,4 +53,12 @@ Apply [DELIVERY-POLICY.md](DELIVERY-POLICY.md) to every remaining ticket: finish
 
 ## Contribution integration — 2026-10-27
 
-Effective Day 02: apply [CONTRIBUTING.md](CONTRIBUTING.md) inside existing tickets. At already scheduled weekly reviews, assess real feedback such as a minimal synthetic JSON parsing/diagnostic case with expected line and column; at documentation/setup tickets, improve a local-processing walkthrough and malformed-input examples. Day 30 records actual contribution evidence and outstanding external dependencies. No day is renumbered and no quota or badge is a completion criterion. Next scope remains: Day 02 — syntax highlighting and stable line/column diagnostics.
+Effective Day 02: apply [CONTRIBUTING.md](CONTRIBUTING.md) inside existing tickets. At already scheduled weekly reviews, assess real feedback such as a minimal synthetic JSON parsing/diagnostic case with expected line and column; at documentation/setup tickets, improve a local-processing walkthrough and malformed-input examples. Day 30 records actual contribution evidence and outstanding external dependencies. No day is renumbered and no quota or badge is a completion criterion.
+
+- Day 02 delivery receipt reconciled 2026-10-29: PR #4 was merged through GitHub with merge commit `d6492068cd3379ce1a4ea4a602ffef670d6c826a`; Issue #5 closed after the narrow-screen diagnostic fix reached `main`. GitHub had zero configured Checks; no CI pass is claimed.
+
+- Day 03: Implemented Ctrl/⌘+Enter formatting, Ctrl/⌘+S local downloads and accessible keyboard help opened with `?`. Save downloads the raw active source and does not add persistent workspace storage; file opening remains on its scheduled day. Review raw-source preservation, keyboard routing, help contrast and mobile layout. GitHub panel review remains pending.
+
+- Day 04 scope clarification: Day 03 supplied the basic download action required by the Save shortcut. Day 04 still covers local file opening and will add explicit size limits and safe error handling to both file-open and download flows; no day is renumbered.
+
+Next scope: Day 04 — local file open/save with size limits and safe error handling, after Day 03 delivery gates are completed.

@@ -42,3 +42,19 @@
 - After this correction, `npm test -- --reporter=dot` passed (3 files, 21 tests), `npm run build` passed including typecheck, Vite and PWA generation, and `git diff --check` passed. The updated PR head and GitHub panel review remain pending.
 - Next: push the correction to PR #4, review the updated exact head/files/checks/conversation, then merge with a merge commit if available gates pass; synchronize local `main`. Close Issue #5 only after the fix reaches `main`.
 - Next product work: Day 03 keyboard shortcuts for format/save/help, after resolving Day 02 delivery gates. Existing shortcut footer is presentation only until then.
+
+## Day 02 delivery receipt reconciliation — 2026-10-29
+
+- The workspace [DELIVERY-RECEIPTS.md](../../DELIVERY-RECEIPTS.md) confirms Day 02 PR [#4](https://github.com/danyallya/json-workbench/pull/4) targeted `main`, was reviewed at final head `ec596f75674973e8a7f6f6c6e9e8ab3b129d6a3d`, and merged through the GitHub panel with merge commit `d6492068cd3379ce1a4ea4a602ffef670d6c826a`. The receipt records nine intended files reviewed and zero configured Checks; no CI pass or independent approval is claimed.
+- Local `main` is synchronized to `origin/main` at `d649206`. Issue #5 was closed after the merged narrow-screen diagnostic fix. Issue #3 remains a separate number-precision follow-up. This receipt supersedes the earlier pending-delivery statements above.
+
+## Day 03 — keyboard shortcuts and help — 2026-10-29
+
+- Review: fetched current remote state; `main` was clean and synchronized at `d649206`. Reviewed the merged Day 02 implementation/tests and this product's backlog, contribution guidance and delivery policy. The prior Day 02 delivery receipt is reconciled above.
+- Implementation: `Ctrl`/`⌘`+`Enter` formats valid JSON and leaves invalid source intact; `Ctrl`/`⌘`+`S` and **Save locally** download the active raw source using its `.json` filename. The keyboard guide is available from the Help disclosure or `?` outside text-editing fields; `Escape` closes it and restores focus. Downloading uses a local Blob and does not send payloads to a server or persist workspace state.
+- Tests/checks: `npm test -- --reporter=dot --maxWorkers=1` passed (3 files, 24 tests), `npm run typecheck` passed, `npm run build` passed (Vite and PWA service worker), and `git diff --check` passed. No standalone lint script is configured.
+- Browser review: local preview inspected at 1280×900 and 390×844 in dark/light views. The desktop split pane and phone editor/help fit were checked. In-browser keyboard review confirmed `?` opens help, `Escape` closes and returns focus, and `Ctrl+Enter` formats. Automated tests cover both Ctrl and Command variants and local download setup; a full assistive-technology/keyboard audit remains scheduled.
+- Documentation: README documents shortcut behavior and download privacy; BACKLOG reconciles the Day 02 merge and records Day 03 completion with Day 04 scope.
+- Git: implementation/tests commit `6d0605c` (`feat(vanta): add editor keyboard shortcuts`) is pushed on `day-03/json-keyboard-shortcuts`; README/BACKLOG/log changes accompany it on the same branch. Local `main` remains unchanged at `d649206`.
+- Blocker: GitHub browser access is unavailable after an earlier navigation surfaced Kaspersky Endpoint Security's “Visiting a domain with an untrusted certificate” warning. It was left untouched. No Vanta PR was created; exact-head Files changed/Checks/conversation review, merge and synchronization remain pending. No GitHub CI status is claimed.
+- Next: ensure all branch commits, including this log update, are pushed. When trusted GitHub browser access is available, create the repository PR with base explicitly set to `main`, attach it to the task, review the exact final head and all changed files/Checks/conversation, then merge through the panel only if its gates pass. Do not start Day 04 until Day 03 delivery is reconciled.
