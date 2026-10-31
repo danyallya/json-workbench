@@ -85,6 +85,61 @@ describe('Vanta JSON Workbench', () => {
     }
   });
 
+  it('opens a local JSON file into the in-memory document list', async () => {
+    const { container } = render(<App />);
+    const input = container.querySelector('input[type="file"]');
+    const editor = screen.getByRole('textbox', { name: /JSON source editor/i });
+    expect(input).not.toBeNull();
+    fireEvent.change(input!, { target: { files: [new File(['{"opened":true}'], 'opened.json', { type: 'application/json' })] } });
+
+    expect(await screen.findByText(/Opened opened.json in this session/)).toBeInTheDocument();
+    expect(editor).toHaveValue('{"opened":true}');
+    expect(container.querySelector('.file-row.active')).toHaveTextContent('opened.json');
+  });
+
+  it('rejects non-JSON and oversized files before reading them', async () => {
+    const { container } = render(<App />);
+    const input = container.querySelector('input[type="file"]')!;
+    fireEvent.change(input, { target: { files: [new File(['{}'], 'notes.txt')] } });
+    expect(await screen.findByText(/Choose a \.json file to open/)).toBeInTheDocument();
+
+    fireEvent.change(input, { target: { files: [new File(['x'.repeat(1024 * 1024 + 1)], 'large.json')] } });
+    expect(await screen.findByText(/This file is over the 1 MiB limit/)).toBeInTheDocument();
+    expect(container.querySelectorAll('.file-row')).toHaveLength(3);
+  });
+
+  it('reports a local file read failure without adding a partial document', async () => {
+    const { container } = render(<App />);
+    const input = container.querySelector('input[type="file"]')!;
+    const readAsText = vi.spyOn(FileReader.prototype, 'readAsText').mockImplementation(() => { throw new Error('read failed'); });
+    try {
+      fireEvent.change(input, { target: { files: [new File(['{}'], 'unreadable.json')] } });
+      expect(await screen.findByText(/Unable to read this file in this browser/)).toBeInTheDocument();
+      expect(container.querySelectorAll('.file-row')).toHaveLength(3);
+    } finally {
+      readAsText.mockRestore();
+    }
+  });
+
+  it('blocks oversized downloads and reports browser download errors', () => {
+    render(<App />);
+    const editor = screen.getByRole('textbox', { name: /JSON source editor/i });
+    fireEvent.change(editor, { target: { value: ' '.repeat(1024 * 1024 + 1) } });
+    fireEvent.click(screen.getByRole('button', { name: /Save release-config.json to device/i }));
+    expect(screen.getByText(/This document is over the 1 MiB download limit/)).toBeInTheDocument();
+
+    const descriptor = Object.getOwnPropertyDescriptor(URL, 'createObjectURL');
+    Object.defineProperty(URL, 'createObjectURL', { configurable: true, writable: true, value: () => { throw new Error('download blocked'); } });
+    try {
+      fireEvent.change(editor, { target: { value: '{"small":true}' } });
+      fireEvent.click(screen.getByRole('button', { name: /Save release-config.json to device/i }));
+      expect(screen.getByText(/Unable to download this file in this browser/)).toBeInTheDocument();
+    } finally {
+      if (descriptor) Object.defineProperty(URL, 'createObjectURL', descriptor);
+      else Reflect.deleteProperty(URL, 'createObjectURL');
+    }
+  });
+
   it('opens accessible keyboard help with ? and closes it with Escape', () => {
     render(<App />);
     const editor = screen.getByRole('textbox', { name: /JSON source editor/i });

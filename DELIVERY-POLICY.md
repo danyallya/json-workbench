@@ -36,7 +36,7 @@ Historical Day 00/01 entries describe their original workflow. This policy super
 
 Parser error handling, JSON comparison and editor accessibility have different review evidence. Use those real boundaries for commits; a formatting fix and its cases may be one coherent commit.
 
-Next planned scope: Day 02 — syntax highlighting and stable line/column diagnostics.
+Next planned scope: Day 05 — schema attachment and JSON Schema validation feedback.
 
 ## Contribution evidence
 
