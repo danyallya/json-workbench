@@ -37,7 +37,7 @@ A local JSON grammar scanner reports the first invalid offset (zero-based) and l
 
 Use **Open file** in the header, **+** beside FILES, or **Choose a file** in Compare to select one `.json` file. The extension check is case-insensitive and the file must be at most 1 MiB (1,048,576 bytes). The source is read as text, kept in the current browser session, and can still be edited when its JSON syntax is invalid; the editor shows its usual diagnostic. A read failure or rejected file is reported in the footer without adding a partial document.
 
-Names are reduced to a safe basename for the workspace and download; control characters are removed and filesystem-reserved punctuation is replaced. Opened files are not persisted after the page reloads. File processing stays local; there is no upload or remote request.
+Names are reduced to a safe basename for the workspace and download; control characters are removed and filesystem-reserved punctuation is replaced. Opened files are not persisted after the page reloads. File processing stays local, and payloads are not uploaded.
 
 ### Keyboard shortcuts and local save
 
