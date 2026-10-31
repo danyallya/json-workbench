@@ -13,8 +13,8 @@ Nexus returned 404 for packages used by this project. Following the user's appro
 |---|---|
 | 01 | **Done** — define the session document and recursive JSON value model, normalize parser errors, and cover valid/invalid documents. |
 | 02 | **Done** — safe highlighted source and deterministic line/column diagnostics merged in PR #4 (`d649206`). |
-| 03 | Implemented — keyboard shortcuts for formatting, local download and accessible help; GitHub panel delivery remains pending. |
-| 04 | Add local file open; add size limits and safe error handling to open and download flows. |
+| 03 | **Done** — keyboard shortcuts for formatting, local download and accessible help; PR #6 merged into `main` (receipt reconciled below). |
+| 04 | In progress — local JSON file open, safe filenames, 1 MiB limits and guarded open/download errors; GitHub panel delivery pending. |
 | 05 | Add schema attachment and JSON Schema validation feedback. |
 | 06 | Add schema fixture library and required-field navigation. |
 | 07 | Review editor keyboard flow, parser tests and error recovery. |
@@ -57,8 +57,8 @@ Effective Day 02: apply [CONTRIBUTING.md](CONTRIBUTING.md) inside existing ticke
 
 - Day 02 delivery receipt reconciled 2026-10-29: PR #4 was merged through GitHub with merge commit `d6492068cd3379ce1a4ea4a602ffef670d6c826a`; Issue #5 closed after the narrow-screen diagnostic fix reached `main`. GitHub had zero configured Checks; no CI pass is claimed.
 
-- Day 03: Implemented Ctrl/⌘+Enter formatting, Ctrl/⌘+S local downloads and accessible keyboard help opened with `?`. Save downloads the raw active source and does not add persistent workspace storage; file opening remains on its scheduled day. Review raw-source preservation, keyboard routing, help contrast and mobile layout. GitHub panel review remains pending.
+- Day 03: Done. Implemented Ctrl/⌘+Enter formatting, Ctrl/⌘+S local downloads and accessible keyboard help opened with `?`. Save downloads the raw active source and does not add persistent workspace storage; file opening remained on its scheduled day. Review raw-source preservation, keyboard routing, help contrast and mobile layout. Delivery was reconciled from the Day 03 receipt below.
 
 - Day 04 scope clarification: Day 03 supplied the basic download action required by the Save shortcut. Day 04 still covers local file opening and will add explicit size limits and safe error handling to both file-open and download flows; no day is renumbered.
 
-Next scope: Day 04 — local file open/save with size limits and safe error handling, after Day 03 delivery gates are completed.
+Next scope after Day 04 delivery: Day 05 — schema attachment and JSON Schema validation feedback.
