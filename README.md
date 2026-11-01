@@ -41,7 +41,7 @@ Names are reduced to a safe basename for the workspace and download; control cha
 
 ### Keyboard shortcuts and local save
 
-- `Ctrl`/`⌘` + `Enter` formats a valid document. Invalid source remains unchanged and the editor announces that it must be fixed first.
+- `Ctrl`/`⌘` + `Enter` formats a valid document only when native JSON parsing and serialization preserve every numeric value. If an unsafe integer, non-finite exponent, underflowing value, or negative zero would change, formatting is blocked, the original source stays intact, and the editor explains why. Invalid source also stays unchanged and must be fixed first.
 - `Ctrl`/`⌘` + `S` and **Save locally** download the active source to this device using its safe `.json` filename. The raw source is downloadable even when it is malformed, so saving does not discard work. Downloads over 1 MiB are rejected before creating a browser download.
 - `?` opens the keyboard guide when focus is outside a text-editing field. The Help disclosure remains available to mouse, touch and keyboard users; `Escape` closes it and returns focus.
 

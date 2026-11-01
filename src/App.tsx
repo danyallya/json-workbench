@@ -3,7 +3,7 @@ import { tokenizeJson } from './domain/jsonSyntax';
 import * as Tabs from '@radix-ui/react-tabs';
 import { FiCheck, FiChevronDown, FiCopy, FiDownload, FiFileText, FiFolder, FiGitMerge, FiHash, FiHelpCircle, FiMoon, FiPlus, FiSearch, FiSettings, FiShield, FiSun, FiTerminal, FiZap } from 'react-icons/fi';
 import { initialDocuments } from './data/sampleDocuments';
-import { getJsonRootSummary, parseJsonDocument } from './domain/jsonDocument';
+import { canFormatJsonLosslessly, getJsonRootSummary, parseJsonDocument } from './domain/jsonDocument';
 import { MAX_JSON_FILE_BYTES, safeJsonFilename, validateJsonFile } from './domain/localJsonFile';
 export default function App() {
   const [documents, setDocuments] = useState(initialDocuments); const [activeDocumentId, setActiveDocumentId] = useState(initialDocuments[0].id); const [dark, setDark] = useState(true); const [notice, setNotice] = useState(''); const [isOpening, setIsOpening] = useState(false);
@@ -17,7 +17,12 @@ export default function App() {
   const parsed = useMemo(() => parseJsonDocument(source), [source]);
   const rootSummary = parsed.ok ? getJsonRootSummary(parsed.value) : null;
   const announce = (message: string) => { setNotice(message); window.setTimeout(() => setNotice(''), 2500); };
-  const pretty = () => { if (parsed.ok) updateSource(JSON.stringify(parsed.value, null, 2)); announce(parsed.ok ? 'Document formatted' : 'Fix the syntax error before formatting'); };
+  const pretty = () => {
+    if (!parsed.ok) { announce('Fix the syntax error before formatting'); return; }
+    if (!canFormatJsonLosslessly(source)) { announce('Cannot format without changing a number; original source was kept'); return; }
+    updateSource(JSON.stringify(parsed.value, null, 2));
+    announce('Document formatted');
+  };
   const openFile = async (file: File) => {
     const issue = validateJsonFile(file);
     if (issue === 'invalid-extension') { announce('Choose a .json file to open'); return; }

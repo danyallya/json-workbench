@@ -44,6 +44,8 @@ Nexus returned 404 for packages used by this project. Following the user's appro
 
 Mark each day Done, In progress or Blocked. Keep tomorrow prepared and record any new findings.
 
+- Review follow-up for Issue #3: formatting now refuses to rewrite source when JavaScript number parsing/stringifying would alter a numeric value; regression coverage includes safe/unsafe integers, decimals, exponents, underflow and negative zero. The original source remains editable and unchanged.
+
 - Day 01: Done. File tabs now maintain separate in-memory documents, parser results have a discriminated error contract, and root summaries support all JSON value types; next is Day 02, syntax highlighting and stable line/column diagnostics.
 - Review carry-over for Day 02: the parser preserves browser engine detail and only extracts an optional position; provide deterministic diagnostics with stable line and column values.
 

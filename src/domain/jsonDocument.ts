@@ -27,6 +27,54 @@ export type JsonRootSummary = {
   itemCount: number;
 };
 
+const jsonNumberPattern = /-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?/y;
+
+function normalizeDecimal(value: string): string | null {
+  const match = /^(-?)(\d+)(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(value);
+  if (!match) return null;
+  const sign = match[1];
+  const fraction = match[3] ?? '';
+  let digits = `${match[2]}${fraction}`.replace(/^0+/, '');
+  if (!digits) return sign ? '-0' : '0';
+  const trailingZeros = /0+$/.exec(digits)?.[0].length ?? 0;
+  if (trailingZeros) digits = digits.slice(0, -trailingZeros);
+  const exponentText = match[4] ?? '0';
+  if (exponentText.replace(/^[+-]?0*/, '').length > 5) return null;
+  const exponent = Number(exponentText) - fraction.length + trailingZeros;
+  if (!Number.isSafeInteger(exponent)) return null;
+  return `${sign}${digits}e${exponent}`;
+}
+
+/** True when JSON.parse followed by JSON.stringify would preserve every numeric value. */
+export function canFormatJsonLosslessly(source: string): boolean {
+  let inString = false;
+  let escaped = false;
+
+  for (let index = 0; index < source.length; index += 1) {
+    const character = source[index];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (character === '\\') escaped = true;
+      else if (character === '"') inString = false;
+      continue;
+    }
+    if (character === '"') {
+      inString = true;
+      continue;
+    }
+    if (character !== '-' && (character < '0' || character > '9')) continue;
+
+    jsonNumberPattern.lastIndex = index;
+    const token = jsonNumberPattern.exec(source)?.[0];
+    if (!token) continue;
+    const parsed = Number(token);
+    if (!Number.isFinite(parsed) || (Object.is(parsed, -0) && token.startsWith('-'))) return false;
+    if (normalizeDecimal(token) !== normalizeDecimal(parsed.toString())) return false;
+    index += token.length - 1;
+  }
+  return true;
+}
+
 export function parseJsonDocument(source: string): JsonParseResult {
   const issue = diagnoseJson(source);
   if (issue) return { ok: false, error: {
