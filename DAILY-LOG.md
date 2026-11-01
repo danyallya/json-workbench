@@ -74,3 +74,9 @@
 - Git: branch `day-04/local-json-files`; implementation commit `22c194f98a025ecbc7750a6ecb29dc5e60d2aedc`; PR [#7](https://github.com/danyallya/json-workbench/pull/7) targets `main`. Both commits are pushed. The implementation head passed local checks; the current head before this log update is `1307221d72196bc6d29f048edca011efa58352ba`.
 - Panel review at `1307221d72196bc6d29f048edca011efa58352ba`: base `main`; all nine changed files viewed; Checks had zero configured runs; Conversation had no findings; GitHub reported no conflicts and allowed automatic merge. No independent review was requested or required. PR #7 remains open; this log-only update needs a final review at its new head before merge.
 - Next: commit and push this review record, then verify the new PR head, review the log change and recheck Checks/conversation. Merge through the GitHub panel if the gates still allow it, synchronize local `main`, and continue Day 04 in README order. Do not advance to Day 05.
+
+## Review follow-up — Issue #3 lossless number formatting — 2026-11-01
+
+- Reconciled the open numeric-precision issue against `main`: formatting parsed values with `JSON.stringify` could round unsafe integers or emit `null` for non-finite numbers. Added a source scanner that skips quoted strings and compares each JSON number's normalized decimal value with JavaScript's round-trip representation before allowing formatting.
+- `Ctrl/⌘+Enter` now blocks lossy rewrites, announces why, and leaves source untouched. Tests cover safe and unsafe integers, exact decimal values, exponents, underflow, negative zero, and digits inside strings. Checks passed: `npm test -- --maxWorkers=1` (4 files / 37 tests), `npm run typecheck`, `npm run build` including PWA generation, and `git diff --check`.
+- Branch: `fix/lossless-json-formatting`. Issue #3 remains open until the dedicated PR is merged.

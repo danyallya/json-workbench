@@ -52,6 +52,17 @@ describe('Vanta JSON Workbench', () => {
 }`);
   });
 
+  it('keeps lossy numbers unchanged and explains why formatting was blocked', () => {
+    render(<App />);
+    const editor = screen.getByRole('textbox', { name: /JSON source editor/i });
+    const source = '{"id":9007199254740993,"amount":1e400}';
+    fireEvent.change(editor, { target: { value: source } });
+    fireEvent.keyDown(editor, { key: 'Enter', ctrlKey: true });
+
+    expect(editor).toHaveValue(source);
+    expect(screen.getByText(/Cannot format without changing a number; original source was kept/)).toBeInTheDocument();
+  });
+
   it('downloads the active source locally with Ctrl or Command plus S', () => {
     render(<App />);
     const editor = screen.getByRole('textbox', { name: /JSON source editor/i });

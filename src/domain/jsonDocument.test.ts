@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getJsonRootSummary, parseJsonDocument } from './jsonDocument';
+import { canFormatJsonLosslessly, getJsonRootSummary, parseJsonDocument } from './jsonDocument';
 
 describe('Vanta JSON document parser contract', () => {
   it('parses valid nested documents into the JSON value model', () => {
@@ -30,4 +30,13 @@ describe('Vanta JSON document parser contract', () => {
     expect(array.ok && getJsonRootSummary(array.value)).toEqual({ type: 'Array', itemCount: 3 });
     expect(primitive.ok && getJsonRootSummary(primitive.value)).toEqual({ type: 'Null', itemCount: 0 });
   });
+
+  it('allows numeric tokens whose exact decimal value survives native JSON formatting', () => {
+    expect(canFormatJsonLosslessly('{"safe":9007199254740991,"decimal":1.25,"exponent":1e3,"text":"9007199254740993"}')).toBe(true);
+  });
+
+  it.each(['9007199254740993', '1e400', '1e-400', '1.0000000000000001', '-0'])(
+    'blocks formatting when JSON number %s would change',
+    (number) => expect(canFormatJsonLosslessly(`{"value":${number}}`)).toBe(false),
+  );
 });
