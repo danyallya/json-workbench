@@ -64,3 +64,6 @@ Effective Day 02: apply [CONTRIBUTING.md](CONTRIBUTING.md) inside existing ticke
 - Day 04 scope clarification: Day 03 supplied the basic download action required by the Save shortcut. Day 04 still covers local file opening and will add explicit size limits and safe error handling to both file-open and download flows; no day is renumbered.
 
 Next scope after Day 04 delivery: Day 05 — schema attachment and JSON Schema validation feedback.
+
+- Day 04: Done — local JSON open/download limits and errors (PR #7 merged; receipt reconciled in DAILY-LOG).
+- Day 05: In progress — attach a JSON Schema in the Schema tab and show validation feedback for the active document. Next: schema fixture library and required-field navigation (Day 06).

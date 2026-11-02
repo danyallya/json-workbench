@@ -46,3 +46,8 @@ Names are reduced to a safe basename for the workspace and download; control cha
 - `?` opens the keyboard guide when focus is outside a text-editing field. The Help disclosure remains available to mouse, touch and keyboard users; `Escape` closes it and returns focus.
 
 Saving creates a browser download only. Documents remain in the current in-memory session; no server or persistent workspace storage is involved. Browser file-read and download failures produce a local footer message, and temporary download URLs are revoked after use.
+
+## Schema validation
+The Schema tab accepts a JSON Schema document and validates the active JSON document when requested. Feedback identifies failing JSON Pointer paths and common type/required/additional-property errors. Schema drafts and payloads stay in the current browser session; validation does not transmit document content. The current validator is Ajv (JSON Schema Draft 7) with all errors shown. Schema references that require remote resolution are not fetched.
+
+Schema validation is available from the Schema workspace tab. Paste a JSON Schema and choose **Validate current document** to review success or path-specific feedback for required properties, types and additional properties. Draft schemas remain in the current browser session; remote references are not fetched.
