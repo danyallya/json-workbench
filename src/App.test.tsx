@@ -22,6 +22,7 @@ describe('Vanta JSON Workbench', () => {
     expect(screen.getByRole('heading', { name: /Shape your data/i })).toBeInTheDocument();
   });
 
+
   it('keeps the active document source separate when switching files', () => {
     render(<App />);
     const editor = screen.getByRole('textbox', { name: /JSON source editor/i });
